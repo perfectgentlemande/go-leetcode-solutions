@@ -65,11 +65,9 @@ func invert(head *ListNode) *ListNode {
 }
 func isPalindrome(head *ListNode) bool {
 	ass := invert(head)
-	show(ass)
 
 	p1, p2 := head, ass
 	for p1 != nil {
-		fmt.Printf("p1: %v, p2: %v\n", p1.Val, p2.Val)
 		if p1.Val != p2.Val {
 			return false
 		}
