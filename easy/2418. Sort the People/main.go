@@ -15,7 +15,7 @@ func sortPeople(names []string, heights []int) []string {
 	heights[pivot], heights[right] = heights[right], heights[pivot]
 	names[pivot], names[right] = names[right], names[pivot]
 
-	for i, _ := range heights {
+	for i := range heights {
 		if heights[i] > heights[right] {
 			heights[left], heights[i] = heights[i], heights[left]
 			names[left], names[i] = names[i], names[left]
