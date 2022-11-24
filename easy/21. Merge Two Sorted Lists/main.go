@@ -43,6 +43,7 @@ func show(l *ListNode) {
 	fmt.Print("\n")
 }
 
+// does not affect the initial lists
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	curNode1 := list1
 	curNode2 := list2
@@ -120,32 +121,143 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	return newList
 }
 
+func mergeTwoListsBetter(list1 *ListNode, list2 *ListNode) *ListNode {
+	tempNode := &ListNode{}
+	currentNode := tempNode
+
+	for list1 != nil && list2 != nil {
+		if list1.Val < list2.Val {
+			currentNode.Next = list1
+			list1 = list1.Next
+		} else {
+			currentNode.Next = list2
+			list2 = list2.Next
+		}
+
+		currentNode = currentNode.Next
+	}
+	if list1 != nil {
+		currentNode.Next = list1
+		list1 = list1.Next
+	}
+	if list2 != nil {
+		currentNode.Next = list2
+		list2 = list2.Next
+	}
+
+	return tempNode.Next
+}
+
 func main() {
+	fmt.Println("unmerged 1:")
 	ln1 := insert([]int{1, 2, 4})
 	show(ln1)
+	fmt.Println("unmerged 2:")
 	ln2 := insert([]int{1, 3, 4})
 	show(ln2)
+	fmt.Println("merged:")
 	ln3 := mergeTwoLists(ln1, ln2)
 	show(ln3)
+	fmt.Println("after merge 1:")
+	show(ln1)
+	fmt.Println("after merge 2:")
+	show(ln2)
 
+	fmt.Println("unmerged 1:")
 	ln1 = insert([]int{})
 	show(ln1)
+	fmt.Println("unmerged 2:")
 	ln2 = insert([]int{})
 	show(ln2)
+	fmt.Println("merged:")
 	ln3 = mergeTwoLists(ln1, ln2)
 	show(ln3)
+	fmt.Println("after merge 1:")
+	show(ln1)
+	fmt.Println("after merge 2:")
+	show(ln2)
 
+	fmt.Println("unmerged 1:")
 	ln1 = insert([]int{})
 	show(ln1)
+	fmt.Println("unmerged 2:")
 	ln2 = insert([]int{0})
 	show(ln2)
+	fmt.Println("merged:")
 	ln3 = mergeTwoLists(ln1, ln2)
 	show(ln3)
+	fmt.Println("after merge 1:")
+	show(ln1)
+	fmt.Println("after merge 2:")
+	show(ln2)
 
+	fmt.Println("unmerged 1:")
 	ln1 = insert([]int{2})
 	show(ln1)
+	fmt.Println("unmerged 2:")
 	ln2 = insert([]int{1})
 	show(ln2)
+	fmt.Println("merged:")
 	ln3 = mergeTwoLists(ln1, ln2)
 	show(ln3)
+	fmt.Println("after merge 1:")
+	show(ln1)
+	fmt.Println("after merge 2:")
+	show(ln2)
+
+	fmt.Println("unmerged 1:")
+	ln1 = insert([]int{1, 2, 4})
+	show(ln1)
+	fmt.Println("unmerged 2:")
+	ln2 = insert([]int{1, 3, 4})
+	show(ln2)
+	fmt.Println("merged:")
+	ln3 = mergeTwoListsBetter(ln1, ln2)
+	show(ln3)
+	fmt.Println("after merge 1:")
+	show(ln1)
+	fmt.Println("after merge 2:")
+	show(ln2)
+
+	fmt.Println("unmerged 1:")
+	ln1 = insert([]int{})
+	show(ln1)
+	fmt.Println("unmerged 2:")
+	ln2 = insert([]int{})
+	show(ln2)
+	fmt.Println("merged:")
+	ln3 = mergeTwoListsBetter(ln1, ln2)
+	show(ln3)
+	fmt.Println("after merge 1:")
+	show(ln1)
+	fmt.Println("after merge 2:")
+	show(ln2)
+
+	fmt.Println("unmerged 1:")
+	ln1 = insert([]int{})
+	show(ln1)
+	fmt.Println("unmerged 2:")
+	ln2 = insert([]int{0})
+	show(ln2)
+	fmt.Println("merged:")
+	ln3 = mergeTwoListsBetter(ln1, ln2)
+	show(ln3)
+	fmt.Println("after merge 1:")
+	show(ln1)
+	fmt.Println("after merge 2:")
+	show(ln2)
+
+	fmt.Println("unmerged 1:")
+	ln1 = insert([]int{2})
+	show(ln1)
+	fmt.Println("unmerged 2:")
+	ln2 = insert([]int{1})
+	show(ln2)
+	fmt.Println("merged:")
+	ln3 = mergeTwoListsBetter(ln1, ln2)
+	show(ln3)
+	fmt.Println("after merge 1:")
+	show(ln1)
+	fmt.Println("after merge 2:")
+	show(ln2)
 }
