@@ -10,8 +10,8 @@ type testCase struct {
 	ExpectedSlice  []int
 }
 
-func getCases() []testCase {
-	return []testCase{
+func TestRemoveDuplicates(t *testing.T) {
+	cases := []testCase{
 		{
 			Nums:           []int{1, 1, 2},
 			ExpectedResult: 2,
@@ -23,10 +23,6 @@ func getCases() []testCase {
 			ExpectedSlice:  []int{0, 1, 2, 3, 4, -1, -1, -1, -1, -1},
 		},
 	}
-}
-
-func TestRemoveDuplicates(t *testing.T) {
-	cases := getCases()
 	for i := range cases {
 		copiedNums := make([]int, len(cases[i].Nums))
 		copy(copiedNums, cases[i].Nums)
@@ -39,7 +35,18 @@ func TestRemoveDuplicates(t *testing.T) {
 }
 
 func TestRemoveDuplicatesBetter(t *testing.T) {
-	cases := getCases()
+	cases := []testCase{
+		{
+			Nums:           []int{1, 1, 2},
+			ExpectedResult: 2,
+			ExpectedSlice:  []int{1, 2, 2},
+		},
+		{
+			Nums:           []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4},
+			ExpectedResult: 5,
+			ExpectedSlice:  []int{0, 1, 2, 3, 4, 2, 2, 3, 3, 4},
+		},
+	}
 	for i := range cases {
 		copiedNums := make([]int, len(cases[i].Nums))
 		copy(copiedNums, cases[i].Nums)
