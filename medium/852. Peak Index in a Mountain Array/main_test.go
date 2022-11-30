@@ -27,6 +27,10 @@ func TestPeakIndexInMountainArray(t *testing.T) {
 			Arr:            []int{0, 3, 5, 9, 10, 2},
 			ExpectedResult: 4,
 		},
+		{
+			Arr:            []int{3, 5, 3, 2, 0},
+			ExpectedResult: 1,
+		},
 	}
 
 	for i := range cases {
