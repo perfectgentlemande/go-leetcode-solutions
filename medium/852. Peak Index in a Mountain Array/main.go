@@ -39,9 +39,28 @@ func peakIndexInMountainArray(arr []int) int {
 	return -1
 }
 
+func peakIndexInMountainArrayBetter(arr []int) int {
+	low, height := 0, len(arr)-1
+
+	for low < height {
+		mid := low + (height-low)/2
+		if arr[mid] < arr[mid+1] {
+			low = mid + 1
+		} else {
+			height = mid
+		}
+	}
+
+	return low
+}
+
 func main() {
 	fmt.Println(peakIndexInMountainArray([]int{0, 1, 0}))
 	fmt.Println(peakIndexInMountainArray([]int{0, 2, 1, 0}))
 	fmt.Println(peakIndexInMountainArray([]int{0, 10, 5, 2}))
 	fmt.Println(peakIndexInMountainArray([]int{3, 5, 3, 2, 0}))
+	fmt.Println(peakIndexInMountainArrayBetter([]int{0, 1, 0}))
+	fmt.Println(peakIndexInMountainArrayBetter([]int{0, 2, 1, 0}))
+	fmt.Println(peakIndexInMountainArrayBetter([]int{0, 10, 5, 2}))
+	fmt.Println(peakIndexInMountainArrayBetter([]int{3, 5, 3, 2, 0}))
 }

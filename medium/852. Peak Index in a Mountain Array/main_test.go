@@ -39,4 +39,10 @@ func TestPeakIndexInMountainArray(t *testing.T) {
 			t.Errorf("Arr: %v, expected: %d got: %d", cases[i].Arr, cases[i].ExpectedResult, got)
 		}
 	}
+	for i := range cases {
+		got := peakIndexInMountainArrayBetter(cases[i].Arr)
+		if got != cases[i].ExpectedResult {
+			t.Errorf("Arr: %v, expected: %d got: %d", cases[i].Arr, cases[i].ExpectedResult, got)
+		}
+	}
 }
