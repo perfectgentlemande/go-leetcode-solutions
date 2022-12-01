@@ -27,4 +27,10 @@ func TestIsPerfectSquare(t *testing.T) {
 			t.Errorf("Num: %d, expected: %t got: %t", cases[i].Num, cases[i].ExpectedResult, got)
 		}
 	}
+	for i := range cases {
+		got := isPerfectSquareBinary(cases[i].Num)
+		if got != cases[i].ExpectedResult {
+			t.Errorf("Num: %d, expected: %t got: %t", cases[i].Num, cases[i].ExpectedResult, got)
+		}
+	}
 }
