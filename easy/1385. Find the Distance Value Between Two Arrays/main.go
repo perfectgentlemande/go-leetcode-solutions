@@ -41,8 +41,6 @@ func findTheDistanceValueBinary(arr1 []int, arr2 []int, d int) int {
 		left, right := 0, len(arr2)-1
 		for left <= right {
 			mid := (left + right) / 2
-			fmt.Printf("left: %d, right: %d, mid: %d\n", left, right, mid)
-
 			if abs(arr1[i]-arr2[mid]) <= d {
 				add = false
 				break
@@ -54,7 +52,6 @@ func findTheDistanceValueBinary(arr1 []int, arr2 []int, d int) int {
 				right = mid - 1
 			}
 		}
-		fmt.Printf("i: %d add: %t\n", i, add)
 
 		if add {
 			distance++
