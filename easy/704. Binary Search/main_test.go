@@ -2,7 +2,7 @@ package main
 
 import "testing"
 
-func Search(t *testing.T) {
+func TestSearch(t *testing.T) {
 	type testCase struct {
 		Nums           []int
 		Target         int
