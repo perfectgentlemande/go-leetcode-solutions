@@ -3,11 +3,7 @@ package main
 var bad = 0
 
 func isBadVersion(version int) bool {
-	if version == bad {
-		return true
-	}
-
-	return false
+	return version == bad
 }
 
 func firstBadVersion(n int) int {
