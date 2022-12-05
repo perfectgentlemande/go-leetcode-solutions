@@ -30,5 +30,9 @@ func TestSpecialArray(t *testing.T) {
 		if got != cases[i].ExpectedResult {
 			t.Errorf("Nums: %v, expected: %d got: %d", cases[i].Nums, cases[i].ExpectedResult, got)
 		}
+		got = specialArrayBinary(cases[i].Nums)
+		if got != cases[i].ExpectedResult {
+			t.Errorf("(binary) Nums: %v, expected: %d got: %d", cases[i].Nums, cases[i].ExpectedResult, got)
+		}
 	}
 }
