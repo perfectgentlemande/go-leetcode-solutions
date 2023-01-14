@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TesSingleNumber(t *testing.T) {
+func TestSingleNumber(t *testing.T) {
 	type testCase struct {
 		Nums           []int
 		ExpectedResult int
