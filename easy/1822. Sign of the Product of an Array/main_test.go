@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestPivotInteger(t *testing.T) {
+func TestArraySign(t *testing.T) {
 	type testCase struct {
 		Nums           []int
 		ExpectedResult int
