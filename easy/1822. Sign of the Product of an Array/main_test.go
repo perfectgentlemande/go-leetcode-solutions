@@ -23,6 +23,10 @@ func TestPivotInteger(t *testing.T) {
 			Nums:           []int{-1, 1, -1, 1, -1},
 			ExpectedResult: -1,
 		},
+		{
+			Nums:           []int{9, 72, 34, 29, -49, -22, -77, -17, -66, -75, -44, -30, -24},
+			ExpectedResult: -1,
+		},
 	}
 
 	for i := range cases {

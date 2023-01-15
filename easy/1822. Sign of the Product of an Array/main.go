@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func signFunc(x int) int {
+func signFunc(x float64) int {
 	if x > 0 {
 		return 1
 	}
@@ -16,10 +16,10 @@ func signFunc(x int) int {
 }
 
 func arraySign(nums []int) int {
-	res := 1
+	res := 1.0
 
 	for _, num := range nums {
-		res *= num
+		res *= float64(num)
 	}
 
 	return signFunc(res)
