@@ -23,6 +23,62 @@ func postorder(root *Node) []int {
 	return output
 }
 
+type Stack []Node
+
+func (s Stack) IsEmpty() bool {
+	return len(s) == 0
+}
+
+func (s *Stack) Push(node Node) {
+	*s = append(*s, node)
+}
+
+func (s *Stack) Pop() (Node, bool) {
+	if s.IsEmpty() {
+		return Node{}, false
+	} else {
+		index := len(*s) - 1
+		element := (*s)[index]
+		*s = (*s)[:index]
+		return element, true
+	}
+}
+
+func reverseSlice(s []int) []int {
+	l, r := 0, len(s)-1
+
+	for l <= r {
+		s[l], s[r] = s[r], s[l]
+		l++
+		r--
+	}
+
+	return s
+}
+
+func postorderIterative(root *Node) []int {
+	res := make([]int, 0)
+	s := make(Stack, 0)
+
+	if root == nil {
+		return nil
+	}
+	s.Push(*root)
+
+	for !s.IsEmpty() {
+		node, _ := s.Pop()
+		res = append(res, node.Val)
+
+		for i := range node.Children {
+			if node.Children[i] != nil {
+				s.Push(*node.Children[i])
+			}
+		}
+	}
+
+	return reverseSlice(res)
+}
+
 func main() {
 	root := Node{Val: 1}
 	root.Children = []*Node{
