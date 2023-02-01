@@ -1,30 +1,16 @@
 package main
 
+import "fmt"
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
 }
 
-func preorderTraversal(root *TreeNode) []int {
-	if root == nil {
-		return nil
-	}
-
-	left := preorderTraversal(root.Left)
-	right := preorderTraversal(root.Right)
-
-	output := make([]int, 0)
-
-	output = append(output, root.Val)
-	output = append(output, left...)
-	output = append(output, right...)
-	return output
-}
-
 func isSameTree(p *TreeNode, q *TreeNode) bool {
 	if p == nil && q == nil {
-		return false
+		return true
 	}
 
 	if p != nil && q == nil {
@@ -39,5 +25,21 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 }
 
 func main() {
+	p := TreeNode{Val: 1,
+		Left:  &TreeNode{Val: 2},
+		Right: &TreeNode{Val: 3},
+	}
+	q := TreeNode{Val: 1,
+		Left:  &TreeNode{Val: 2},
+		Right: &TreeNode{Val: 3},
+	}
+	fmt.Println(isSameTree(&p, &q))
 
+	p = TreeNode{Val: 1,
+		Left: &TreeNode{Val: 2},
+	}
+	q = TreeNode{Val: 1,
+		Right: &TreeNode{Val: 2},
+	}
+	fmt.Println(isSameTree(&p, &q))
 }
