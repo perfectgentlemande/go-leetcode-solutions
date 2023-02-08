@@ -91,7 +91,7 @@ func traverse(node TreeNode, level int, res *[][]int) {
 		*res = append(*res, make([]int, 0))
 	}
 	(*res)[level] = append((*res)[level], node.Val)
-	fmt.Println(res)
+
 	if node.Left != nil {
 		traverse(*node.Left, level+1, res)
 	}
@@ -107,6 +107,57 @@ func levelOrderRecursive(root *TreeNode) [][]int {
 
 	res := make([][]int, 0)
 	traverse(*root, 0, &res)
+
+	return res
+}
+
+type Queue []TreeNode
+
+func (q Queue) IsEmpty() bool {
+	return len(q) == 0
+}
+func (q *Queue) Add(node TreeNode) {
+	*q = append([]TreeNode{node}, *q...)
+}
+func (q *Queue) Remove() (TreeNode, bool) {
+	if q.IsEmpty() {
+		return TreeNode{}, false
+	} else {
+		index := len(*q) - 1
+		element := (*q)[index]
+		*q = (*q)[:index]
+		return element, true
+	}
+}
+
+func levelOrderIterativeOneMore(root *TreeNode) [][]int {
+	if root == nil {
+		return nil
+	}
+
+	res := make([][]int, 0)
+	level := 0
+	queue := Queue{}
+	queue.Add(*root)
+
+	for !queue.IsEmpty() {
+		res = append(res, make([]int, 0))
+		levelLen := len(queue)
+
+		for i := 0; i < levelLen; i++ {
+			node, _ := queue.Remove()
+			res[level] = append(res[level], node.Val)
+
+			if node.Left != nil {
+				queue.Add(*node.Left)
+			}
+			if node.Right != nil {
+				queue.Add(*node.Right)
+			}
+		}
+
+		level++
+	}
 
 	return res
 }
@@ -193,4 +244,46 @@ func main() {
 		},
 	}
 	fmt.Println(levelOrderRecursive(&r))
+
+	fmt.Println("one more iterative")
+
+	r = TreeNode{
+		Val: 3,
+		Left: &TreeNode{
+			Val: 9,
+		},
+		Right: &TreeNode{
+			Val: 20,
+			Left: &TreeNode{
+				Val: 15,
+			},
+			Right: &TreeNode{
+				Val: 7,
+			},
+		},
+	}
+	fmt.Println(levelOrderIterativeOneMore(&r))
+
+	r = TreeNode{
+		Val: 1,
+	}
+	fmt.Println(levelOrderIterativeOneMore(&r))
+	fmt.Println(levelOrderIterativeOneMore(nil))
+
+	r = TreeNode{
+		Val: 1,
+		Left: &TreeNode{
+			Val: 2,
+			Left: &TreeNode{
+				Val: 4,
+			},
+		},
+		Right: &TreeNode{
+			Val: 3,
+			Right: &TreeNode{
+				Val: 5,
+			},
+		},
+	}
+	fmt.Println(levelOrderIterativeOneMore(&r))
 }
