@@ -86,6 +86,31 @@ func levelOrder(root *TreeNode) [][]int {
 	return res
 }
 
+func traverse(node TreeNode, level int, res *[][]int) {
+	if len(*res) == level {
+		*res = append(*res, make([]int, 0))
+	}
+	(*res)[level] = append((*res)[level], node.Val)
+	fmt.Println(res)
+	if node.Left != nil {
+		traverse(*node.Left, level+1, res)
+	}
+	if node.Right != nil {
+		traverse(*node.Right, level+1, res)
+	}
+}
+
+func levelOrderRecursive(root *TreeNode) [][]int {
+	if root == nil {
+		return nil
+	}
+
+	res := make([][]int, 0)
+	traverse(*root, 0, &res)
+
+	return res
+}
+
 func main() {
 	r := TreeNode{
 		Val: 3,
@@ -126,4 +151,46 @@ func main() {
 		},
 	}
 	fmt.Println(levelOrder(&r))
+
+	fmt.Println("recursive")
+
+	r = TreeNode{
+		Val: 3,
+		Left: &TreeNode{
+			Val: 9,
+		},
+		Right: &TreeNode{
+			Val: 20,
+			Left: &TreeNode{
+				Val: 15,
+			},
+			Right: &TreeNode{
+				Val: 7,
+			},
+		},
+	}
+	fmt.Println(levelOrderRecursive(&r))
+
+	r = TreeNode{
+		Val: 1,
+	}
+	fmt.Println(levelOrderRecursive(&r))
+	fmt.Println(levelOrderRecursive(nil))
+
+	r = TreeNode{
+		Val: 1,
+		Left: &TreeNode{
+			Val: 2,
+			Left: &TreeNode{
+				Val: 4,
+			},
+		},
+		Right: &TreeNode{
+			Val: 3,
+			Right: &TreeNode{
+				Val: 5,
+			},
+		},
+	}
+	fmt.Println(levelOrderRecursive(&r))
 }
