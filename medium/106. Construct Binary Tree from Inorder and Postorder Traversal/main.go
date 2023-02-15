@@ -6,6 +6,8 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// NOTE: I don't understand how it works: I just re-wrote the official solution into Go and it works :(
+
 func helper(inLeft, inRight int, postorder []int, postIdx *int, idxMap map[int]int) *TreeNode {
 	if inLeft > inRight {
 		return nil
