@@ -15,23 +15,20 @@ func helper(inLeft, inRight int, postorder []int, postIdx *int, idxMap map[int]i
 
 	rootVal := postorder[*postIdx]
 	root := TreeNode{Val: rootVal}
-	index := idxMap[rootVal]
 	*postIdx = (*postIdx) - 1
 
-	root.Right = helper(index+1, inRight, postorder, postIdx, idxMap)
-	root.Left = helper(inLeft, index-1, postorder, postIdx, idxMap)
+	root.Right = helper(idxMap[rootVal]+1, inRight, postorder, postIdx, idxMap)
+	root.Left = helper(inLeft, idxMap[rootVal]-1, postorder, postIdx, idxMap)
 
 	return &root
 }
 
 func buildTree(inorder []int, postorder []int) *TreeNode {
 	postIdx := len(postorder) - 1
-	idx := 0
 	idxMap := map[int]int{}
 
-	for _, val := range inorder {
-		idxMap[val] = idx
-		idx++
+	for i, val := range inorder {
+		idxMap[val] = i
 	}
 
 	return helper(0, len(inorder)-1, postorder, &postIdx, idxMap)
