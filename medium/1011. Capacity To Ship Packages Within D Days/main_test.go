@@ -35,4 +35,10 @@ func TestShipWithinDays(t *testing.T) {
 			t.Errorf("Arr: %v, days: %d, expected: %d got: %d", cases[i].Arr, cases[i].Days, cases[i].ExpectedResult, got)
 		}
 	}
+	for i := range cases {
+		got := shipWithinDaysBetter(cases[i].Arr, cases[i].Days)
+		if got != cases[i].ExpectedResult {
+			t.Errorf("Arr: %v, days: %d, expected: %d got: %d", cases[i].Arr, cases[i].Days, cases[i].ExpectedResult, got)
+		}
+	}
 }
