@@ -68,7 +68,7 @@ func openLock(deadends []string, target string) int {
 		0,
 	})
 
-	for len(q) > 0 {
+	for !q.IsEmpty() {
 		f, _ := q.Remove()
 
 		if visited[f.lock] {
