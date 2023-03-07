@@ -5,7 +5,8 @@ type Node struct {
 	Next *Node
 }
 type MinStack struct {
-	root *Node
+	root    *Node
+	minRoot *Node
 }
 
 func Constructor() MinStack {
@@ -14,7 +15,17 @@ func Constructor() MinStack {
 
 func (this *MinStack) Push(val int) {
 	nextRoot := this.root
+	nextMinRoot := &Node{
+		Next: this.minRoot,
+	}
 
+	if this.minRoot == nil || val < this.minRoot.Val {
+		nextMinRoot.Val = val
+	} else {
+		nextMinRoot.Val = this.minRoot.Val
+	}
+
+	this.minRoot = nextMinRoot
 	this.root = &Node{
 		Val:  val,
 		Next: nextRoot,
@@ -27,6 +38,7 @@ func (this *MinStack) Pop() {
 	}
 
 	this.root = this.root.Next
+	this.minRoot = this.minRoot.Next
 }
 
 func (this *MinStack) Top() int {
@@ -42,18 +54,7 @@ func (this *MinStack) GetMin() int {
 		return 0
 	}
 
-	min := this.root.Val
-	cur := this.root
-
-	for cur != nil {
-		if cur.Val < min {
-			min = cur.Val
-		}
-
-		cur = cur.Next
-	}
-
-	return min
+	return this.minRoot.Val
 }
 
 func main() {
