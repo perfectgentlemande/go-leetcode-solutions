@@ -33,7 +33,12 @@ func TestSearchRange(t *testing.T) {
 
 	for i := range cases {
 		if got := numIslands(cases[i].Grid); got != cases[i].ExpectedResult {
-			t.Errorf("Grid %v, expected: %d, got: %v", cases[i].Grid, cases[i].ExpectedResult, got)
+			t.Errorf("(BFS) Grid %v, expected: %d, got: %v", cases[i].Grid, cases[i].ExpectedResult, got)
+		}
+	}
+	for i := range cases {
+		if got := numIslandsDFS(cases[i].Grid); got != cases[i].ExpectedResult {
+			t.Errorf("(DFS) Grid %v, expected: %d, got: %v", cases[i].Grid, cases[i].ExpectedResult, got)
 		}
 	}
 }
