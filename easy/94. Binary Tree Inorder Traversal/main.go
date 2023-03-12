@@ -65,6 +65,66 @@ func inorderTraversalIterative(root *TreeNode) []int {
 	return res
 }
 
+type LinkedListNode struct {
+	Val  TreeNode
+	Next *LinkedListNode
+}
+type LinkedListStack struct {
+	root *LinkedListNode
+}
+
+func (s *LinkedListStack) Push(val TreeNode) {
+	nextRoot := s.root
+
+	s.root = &LinkedListNode{
+		Val:  val,
+		Next: nextRoot,
+	}
+}
+
+func (s *LinkedListStack) Pop() (TreeNode, bool) {
+	if s.root == nil {
+		return TreeNode{}, false
+	}
+
+	val := s.root.Val
+	s.root = s.root.Next
+
+	return val, true
+}
+
+func (s *LinkedListStack) Top() (TreeNode, bool) {
+	if s.root == nil {
+		return TreeNode{}, false
+	}
+
+	return s.root.Val, true
+}
+
+func (s *LinkedListStack) IsEmpty() bool {
+	return s.root == nil
+}
+
+func inorderTraversalIterativeWithLinkedList(root *TreeNode) []int {
+	res := make([]int, 0)
+	s := LinkedListStack{}
+
+	cur := root
+	for cur != nil || !s.IsEmpty() {
+		for cur != nil {
+			s.Push(*cur)
+			cur = cur.Left
+		}
+
+		newCur, _ := s.Pop()
+		cur = &newCur
+		res = append(res, cur.Val)
+		cur = cur.Right
+	}
+
+	return res
+}
+
 func main() {
 	root := TreeNode{Val: 1}
 	root.Right = &TreeNode{Val: 2}
