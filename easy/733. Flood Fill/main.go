@@ -1,17 +1,17 @@
 package main
 
-type Node struct {
+type StackNode struct {
 	Val  []int
-	Next *Node
+	Next *StackNode
 }
 type Stack struct {
-	root *Node
+	root *StackNode
 }
 
 func (s *Stack) Push(val []int) {
 	nextRoot := s.root
 
-	s.root = &Node{
+	s.root = &StackNode{
 		Val:  val,
 		Next: nextRoot,
 	}
