@@ -32,4 +32,11 @@ func TestGetRow(t *testing.T) {
 			t.Errorf("rowIndex: %d, expected: %v, got: %v", cases[i].RowIndex, cases[i].ExpectedResult, got)
 		}
 	}
+
+	for i := range cases {
+		got := getRowBetter(cases[i].RowIndex)
+		if !reflect.DeepEqual(got, cases[i].ExpectedResult) {
+			t.Errorf("(better) rowIndex: %d, expected: %v, got: %v", cases[i].RowIndex, cases[i].ExpectedResult, got)
+		}
+	}
 }
