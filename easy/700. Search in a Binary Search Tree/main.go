@@ -24,6 +24,23 @@ func searchBST(root *TreeNode, val int) *TreeNode {
 	return nil
 }
 
+func searchBSTRecursive(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.Val == val {
+		return root
+	}
+
+	if val > root.Val {
+		return searchBSTRecursive(root.Right, val)
+	} else if val < root.Val {
+		return searchBSTRecursive(root.Left, val)
+	}
+
+	return nil
+}
+
 func main() {
 
 }
