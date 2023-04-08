@@ -30,6 +30,24 @@ func getRowBetter(rowIndex int) []int {
 
 	return res
 }
+
+func getNum(i, j int) int {
+	if j == 0 || i == j {
+		return 1
+	}
+
+	return getNum(i-1, j-1) + getNum(i-1, j)
+}
+func getRowRecursive(rowIndex int) []int {
+	res := make([]int, 0, rowIndex+1)
+
+	for i := 0; i <= rowIndex; i++ {
+		res = append(res, getNum(rowIndex, i))
+	}
+
+	return res
+}
+
 func main() {
 
 }
