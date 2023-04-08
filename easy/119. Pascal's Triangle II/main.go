@@ -48,6 +48,31 @@ func getRowRecursive(rowIndex int) []int {
 	return res
 }
 
+func getRowRecursiveBetter(rowIndex int) []int {
+	if rowIndex == 0 {
+		return []int{1}
+	}
+
+	prevRow := getRowRecursiveBetter(rowIndex - 1)
+	row := make([]int, rowIndex+1)
+
+	for i := 0; i <= rowIndex; i++ {
+		var left, right int
+
+		if i > 0 {
+			left = prevRow[i-1]
+		}
+
+		if i < rowIndex {
+			right = prevRow[i]
+		}
+
+		row[i] = left + right
+	}
+
+	return row
+}
+
 func main() {
 
 }
