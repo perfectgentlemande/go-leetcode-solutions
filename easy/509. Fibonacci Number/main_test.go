@@ -37,4 +37,10 @@ func TestFibonacciNumber(t *testing.T) {
 			t.Errorf("(with memoization) N: %d, expected: %d got: %d", cases[i].N, cases[i].ExpectedResult, got)
 		}
 	}
+	for i := range cases {
+		got := fibIterative(cases[i].N)
+		if got != cases[i].ExpectedResult {
+			t.Errorf("(iterative) N: %d, expected: %d got: %d", cases[i].N, cases[i].ExpectedResult, got)
+		}
+	}
 }
