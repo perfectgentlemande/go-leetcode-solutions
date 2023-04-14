@@ -148,6 +148,28 @@ func mergeTwoListsBetter(list1 *ListNode, list2 *ListNode) *ListNode {
 	return tempNode.Next
 }
 
+func mergeTwoListsRecursive(list1 *ListNode, list2 *ListNode) *ListNode {
+	if list1 == nil && list2 == nil {
+		return nil
+	}
+	if list1 == nil {
+		return list2
+	}
+	if list2 == nil {
+		return list1
+	}
+
+	if list1.Val < list2.Val {
+		tmp := list1.Next
+		list1.Next = mergeTwoListsRecursive(tmp, list2)
+		return list1
+	} else {
+		tmp := list2.Next
+		list2.Next = mergeTwoListsRecursive(tmp, list1)
+		return list2
+	}
+}
+
 func main() {
 	fmt.Println("unmerged 1:")
 	ln1 := insert([]int{1, 2, 4})
