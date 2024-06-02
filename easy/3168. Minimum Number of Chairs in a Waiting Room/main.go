@@ -1,10 +1,8 @@
 package main
 
 func minimumChairs(s string) int {
-	res := 0
-
 	if s == "" {
-		return res
+		return 0
 	}
 
 	curCap := 0
