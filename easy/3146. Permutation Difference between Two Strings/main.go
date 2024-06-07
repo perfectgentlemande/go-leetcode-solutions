@@ -29,6 +29,7 @@ func findPermutationDifference(s string, t string) int {
 
 	return res
 }
+
 func main() {
 
 }
