@@ -2,7 +2,11 @@ package main
 
 import "unicode"
 
-func isValid(word string) bool {
+unc isValid(word string) bool {
+    if len(word) < 3 {
+        return false
+    }
+
 	vowels := map[rune]struct{}{
 		'a': {},
 		'e': {},
@@ -23,14 +27,16 @@ func isValid(word string) bool {
 			return false
 		}
 
-		if _, ok := vowels[ch]; ok {
+        if unicode.IsLetter(ch) {
+            if _, ok := vowels[ch]; ok {
 			foundVowel = true
-		} else {
-			foundConsonant = true
-		}
+            } else {
+                foundConsonant = true
+            }
+        }	
 	}
 
-	return foundConsonant == foundVowel
+	return foundConsonant && foundVowel
 }
 
 func main() {
