@@ -2,10 +2,10 @@ package main
 
 import "unicode"
 
-unc isValid(word string) bool {
-    if len(word) < 3 {
-        return false
-    }
+func isValid(word string) bool {
+	if len(word) < 3 {
+		return false
+	}
 
 	vowels := map[rune]struct{}{
 		'a': {},
@@ -27,13 +27,13 @@ unc isValid(word string) bool {
 			return false
 		}
 
-        if unicode.IsLetter(ch) {
-            if _, ok := vowels[ch]; ok {
-			foundVowel = true
-            } else {
-                foundConsonant = true
-            }
-        }	
+		if unicode.IsLetter(ch) {
+			if _, ok := vowels[ch]; ok {
+				foundVowel = true
+			} else {
+				foundConsonant = true
+			}
+		}
 	}
 
 	return foundConsonant && foundVowel

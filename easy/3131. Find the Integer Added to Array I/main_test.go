@@ -35,4 +35,11 @@ func TestAddedInteger(t *testing.T) {
 			t.Errorf("nums1: %v, nums2: %v, expected: %v got: %v", cases[i].Nums1, cases[i].Nums2, cases[i].ExpectedResult, got)
 		}
 	}
+
+	for i := range cases {
+		got := addedIntegerBetter(cases[i].Nums1, cases[i].Nums2)
+		if got != cases[i].ExpectedResult {
+			t.Errorf("(better) nums1: %v, nums2: %v, expected: %v got: %v", cases[i].Nums1, cases[i].Nums2, cases[i].ExpectedResult, got)
+		}
+	}
 }

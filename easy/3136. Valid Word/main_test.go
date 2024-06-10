@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestSatisfiesConditions(t *testing.T) {
+func TestIsValid(t *testing.T) {
 	type testCase struct {
 		Word           string
 		ExpectedResult bool
