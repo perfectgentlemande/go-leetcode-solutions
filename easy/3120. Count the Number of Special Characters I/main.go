@@ -5,15 +5,15 @@ import (
 )
 
 func numberOfSpecialChars(word string) int {
-	mappedCharsLower := map[rune]int{}
-	mappedCharsNotLower := map[rune]int{}
+	mappedCharsLower := map[rune]struct{}{}
+	mappedCharsNotLower := map[rune]struct{}{}
 	count := 0
 
 	for _, ch := range word {
 		if unicode.IsLower(ch) {
-			mappedCharsLower[ch]++
+			mappedCharsLower[ch] = struct{}{}
 		} else {
-			mappedCharsNotLower[unicode.ToLower(ch)]++
+			mappedCharsNotLower[unicode.ToLower(ch)] = struct{}{}
 		}
 	}
 
