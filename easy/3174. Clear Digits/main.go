@@ -48,6 +48,20 @@ func clearDigits(s string) string {
 	return string(prevRuneStr)
 }
 
+func clearDigitsBetter(s string) string {
+	var stack []rune
+
+	for _, rn := range s {
+		if rn >= 'a' && rn <= 'z' {
+			stack = append(stack, rn)
+		} else {
+			stack = stack[:len(stack)-1]
+		}
+	}
+
+	return string(stack)
+}
+
 func main() {
 
 }
