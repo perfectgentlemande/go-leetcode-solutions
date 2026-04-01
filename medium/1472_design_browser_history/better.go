@@ -11,7 +11,7 @@ type BrowserHistory2 struct {
 	current *DLLNode
 }
 
-func Constructor(homepage string) BrowserHistory2 {
+func Constructor2(homepage string) BrowserHistory2 {
 	bh := BrowserHistory2{
 		head: &DLLNode{
 			Val: homepage,
