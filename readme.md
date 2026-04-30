@@ -1,3 +1,3 @@
 # I'm code monkey
 
-Let's grow together lol
+Let's grow together lol.
